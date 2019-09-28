@@ -1,26 +1,61 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "./views/Home.vue";
 
 Vue.use(Router);
 
-export default new Router({
-  mode: "history",
-  base: process.env.BASE_URL,
-  routes: [
-    {
-      path: "/",
-      name: "home",
-      component: Home
-    },
-    {
-      path: "/about",
-      name: "about",
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () =>
-        import(/* webpackChunkName: "about" */ "./views/About.vue")
-    }
-  ]
-});
+
+
+/**
+ * asyncRoutes
+ * 需要根据用户角色动态加载路由
+ */
+
+export const asyncRoutes = [{
+  path: '*',
+  redirect: '/404',
+  hidden: true
+}]
+
+
+
+/**
+ * constantRoutes
+ * 没有权限要求的基页
+ * 可以访问所有角色
+ */
+
+export const constantRoutes = [{
+    path: '/',
+    redirect: "/home",
+    component: Layout,
+    children: [{
+      path: 'home',
+      component: () => import("@/views/Home/index"),
+      name: 'Home',
+      meta: {
+        title: 'dashboard',
+        icon: 'dashboard',
+        affix: true
+      }
+    }]
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import("@/views/Login/index")
+  }
+]
+
+const createRouter = () => {
+  new Router({
+    routes: constantRoutes
+  })
+}
+
+const router = createRouter()
+export function resetRouter() {
+  const newRouter = createRouter();
+  router.matcher = newRouter.matcher; //reset router
+}
+
+export default router
