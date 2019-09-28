@@ -1,4 +1,14 @@
-# templevuecli
+# templevuecli   --这只是一个vuecli3 模板
+
+
+<!-- 已安装插件 -->
+1. vue-router
+2. vuex
+3. dart-sass
+4. babel
+5. Eslint+Prettier
+
+
 
 ## Project setup
 ```
