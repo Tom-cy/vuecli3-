@@ -1,99 +1,71 @@
 <template>
-  <div>
-    <div>
-      <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" class="demo-ruleForm">
-        <el-form-item label="用户名" prop="username" :label-width="labelWidth">
-          <el-input v-model="ruleForm.username"></el-input>
-        </el-form-item>
-        <el-form-item label="密码" prop="pass" :label-width="labelWidth">
-          <el-input type="password" v-model="ruleForm.pass" autocomplete="off"></el-input>
-        </el-form-item>
-        <el-form-item label="确认密码" prop="checkPass" :label-width="labelWidth">
-          <el-input type="password" v-model="ruleForm.checkPass" autocomplete="off"></el-input>
-        </el-form-item>
-        <el-form-item :label-width="labelWidth">
-          <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
-          <el-button @click="resetForm('ruleForm')">重置</el-button>
+  <div class="login-wrap">
+    <div class="ms-login">
+      <div class="ms-title">后台管理</div>
+      <el-form :model="ruleForm" class="cy-login-form" ref="ruleForm" :rules="rules">
+        <el-form-item prop="username">
+          <el-input v-model="ruleForm.username" placeholder="请输入用户名"></el-input>
         </el-form-item>
       </el-form>
     </div>
   </div>
 </template>
 
- 
 <script>
 export default {
   data() {
-    var checkusername = (rule, value, callback) => {
-      if (!value) {
-        return callback(new Error('年龄不能为空'))
-      }
-      setTimeout(() => {
-        // if (!Number.isInteger(value)) {
-        //   callback(new Error('请输入数字值'))
-        // } else {
-        //   if (value < 18) {
-        //     callback(new Error('必须年满18岁'))
-        //   } else {
-        //     callback()
-        //   }
-        // }
-      }, 1000)
-    }
-    var validatePass = (rule, value, callback) => {
+    let validatename = (rule, value, callback) => {
+      let reg = /^[0-9a-zA-Z_]{1,}$/
       if (value === '') {
-        callback(new Error('请输入密码'))
-      } else {
-        if (this.ruleForm.checkPass !== '') {
-          this.$refs.ruleForm.validateField('checkPass')
-        }
-        callback()
+        callback(new Error('请输入用户名'))
+      } else if (!value.match(reg)) {
+        callback(
+          new Error(
+            '请输入正确规则的用户名, 由数字、26个英文字母或者下划线组成'
+          )
+        )
       }
-    }
-    var validatePass2 = (rule, value, callback) => {
-      if (value === '') {
-        callback(new Error('请再次输入密码'))
-      } else if (value !== this.ruleForm.pass) {
-        callback(new Error('两次输入密码不一致!'))
-      } else {
-        callback()
-      }
+      callback()
     }
     return {
-      labelWidth: '100px',
       ruleForm: {
-        pass: '',
-        checkPass: '',
-        username: ''
+        username: '',
+        password: ''
       },
       rules: {
-        pass: [{ validator: validatePass, trigger: 'blur' }],
-        checkPass: [{ validator: validatePass2, trigger: 'blur' }],
-        username: [{ validator: checkusername, trigger: 'blur' }]
+        username: [{ validator: validatename, trigger: 'blur' }]
       }
     }
-  },
-  methods: {
-    submitForm(formName) {
-      this.$refs[formName].validate(valid => {
-        if (valid) {
-          alert('submit!')
-        } else {
-          console.log('error submit!!')
-          return false
-        }
-      })
-    }
-    // resetForm(formName) {
-    //   this.$refs[formName].resetFields()
-    // }
   }
 }
 </script>
 
-
-<style lang="scss" scoped>
-.demo-ruleForm {
-  width: 350px;
+<style lang="scss">
+@import '../../style/variables.scss';
+.login-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-image: url(../../assets/login.png);
+  background-size: 100%;
+  color: #fff;
+  .ms-login {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 50%;
+    width: 350px;
+    height: 200px;
+    background-color: $mslogin;
+    .ms-title {
+      line-height: 50px;
+      text-align: center;
+      border-bottom: 1px solid #ccc;
+    }
+    .cy-login-form {
+      width: 300px;
+      padding: 25px;
+    }
+  }
 }
 </style>
