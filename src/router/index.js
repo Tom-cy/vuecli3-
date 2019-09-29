@@ -1,9 +1,7 @@
-import Vue from "vue";
-import Router from "vue-router";
+import Vue from 'vue'
+import Router from 'vue-router'
 
-Vue.use(Router);
-
-
+Vue.use(Router)
 
 /**
  * asyncRoutes
@@ -17,8 +15,6 @@ export const asyncRoutes = [
   // hidden: true
   // }
 ]
-
-
 
 /**
  * constantRoutes
@@ -45,7 +41,7 @@ export const constantRoutes = [
   {
     path: '/login',
     name: 'login',
-    component: () => import("@/views/Login")
+    component: () => import('@/views/Login')
   }
 ]
 
@@ -53,7 +49,6 @@ const createRouter = () =>
   new Router({
     routes: constantRoutes
   })
-
 
 const router = createRouter()
 // export function resetRouter() {
