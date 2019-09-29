@@ -1,7 +1,6 @@
 const path = require('path')
 
-const port = 4444
-
+const port = 5555
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
@@ -9,15 +8,13 @@ function resolve(dir) {
 // 判断是否为生产环境
 const ISPRO = process.env.NODE_ENV === 'production'
 
-
 module.exports = {
-
   publicPath: '/',
   devServer: {
     port: port,
     open: true,
     https: false,
-    hotOnly: true //代码热更新 
+    hotOnly: true // 代码热更新
   },
   configureWebpack: {
     resolve: {

@@ -2,7 +2,6 @@
   <div class="login-wrap">
     <div class="ms-login">
       <div class="ms-title">后台管理</div>
-
       <el-form :model="ruleForm" class="cy-login-form" ref="ruleForm" :rules="rules">
         <el-form-item prop="username">
           <el-input v-model="ruleForm.username" placeholder="请输入用户名" prefix-icon="el-icon-user"></el-input>
@@ -99,7 +98,9 @@ export default {
     // 自定义函数- 拼图完成之后的函数操作
     UserLogin() {
       this.loading = false
-      console.log('进行dispactch')
+      this.$store.dispatch('user/login', this.ruleForm).then(response => {
+        console.log('login-vue页面')
+      })
     },
 
     OnSubmit(formName) {
@@ -158,7 +159,7 @@ export default {
       this.drawBlock(bg, mainxy, 'fill')
       this.drawBlock(block, blockxy, 'clip')
     },
-    //绘制拼图
+    // 绘制拼图
     drawBlock(ctx, xy = { x: 254, y: 109, r: 9 }, type) {
       let x = xy.x,
         y = xy.y,
@@ -202,7 +203,7 @@ export default {
         //y = moveEV.y - downCoordinate.y;
         if (x >= 251 || x <= 0) return false
         dom.style.left = x + 'px'
-        //dom.style.top = y + "px";
+        // dom.style.top = y + "px";
         slider.style.left = x + 'px'
       }
 
@@ -217,10 +218,10 @@ export default {
          * x : 图片移动的距离
          * checkx : 需要图片滑动的距离
          */
-        console.log('需要滑动的距离最大为' + max)
-        console.log('需要滑动的距离最小为' + min)
-        console.log('需要滑动的距离为' + x)
-        //允许正负误差3
+        // console.log('需要滑动的距离最大为' + max)
+        // console.log('需要滑动的距离最小为' + min)
+        // console.log('需要滑动的距离为' + x)
+        // 允许正负误差3
         if ((max >= x && x >= min) || x === checkx) {
           this.puzzle = true
           this.tips = '验证成功'
@@ -256,9 +257,6 @@ export default {
   border-radius: 2px;
 }
 </style>
-
-
-
 
 <style lang="scss">
 @import '../../style/variables.scss';

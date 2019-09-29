@@ -1,20 +1,15 @@
-import {
-  Axios
-} from 'axios';
-import {
-  Message
-} from 'element-ui'
+import Axios from 'axios'
+import { Message } from 'element-ui'
 import Cookies from 'js-cookie'
 import router from '@/router'
-
+console.log(process.env.BASE_URL)
 // 创建axios 实例
 const service = Axios.create({
-  baseURL: process.env.BASE_URL, //api的baseurl
-  timeout: 222222 //请求超时时间
+  baseURL: process.env.BASE_URL, // api的baseurl
+  timeout: 222222 // 请求超时时间
 })
 
-
-/** 
+/**
  * 请求前拦截
  * 用户处理需要在请求前的操作
  */
@@ -69,7 +64,6 @@ service.interceptors.response.use(
      */
 
     switch (responseCode) {
-
       case 401:
         // <!-- 弹出错误信息 -->
         Message({
@@ -83,7 +77,7 @@ service.interceptors.response.use(
             redirect: router.currentRoute.fullPath
           }
         })
-        break;
+        break
 
       case 403:
         // <!-- 弹出错误信息 -->
@@ -92,14 +86,13 @@ service.interceptors.response.use(
           message: '登录已过期, 请重新登录'
         })
         // <!-- 删除过期token -->
-        Cookies.remove('token');
+        Cookies.remove('token')
         // 然后跳转至登录
         router.replace({
           path: '/login',
           query: router.currentRoute.fullPath
-
         })
-        break;
+        break
 
       case 404:
         // <!-- 弹出错误信息 -->
@@ -107,14 +100,14 @@ service.interceptors.response.use(
           type: 'error',
           message: '网络请求不存在'
         })
-        break;
+        break
       default:
         // <!-- 弹出错误信息 -->
         Message({
           type: 'error',
           message: error.response.data.message
         })
-        break;
+        break
     }
   }
 )
