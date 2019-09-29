@@ -2,9 +2,25 @@
   <div class="login-wrap">
     <div class="ms-login">
       <div class="ms-title">后台管理</div>
+
       <el-form :model="ruleForm" class="cy-login-form" ref="ruleForm" :rules="rules">
         <el-form-item prop="username">
-          <el-input v-model="ruleForm.username" placeholder="请输入用户名"></el-input>
+          <el-input v-model="ruleForm.username" placeholder="请输入用户名" prefix-icon="el-icon-user"></el-input>
+        </el-form-item>
+
+        <el-form-item prop="password">
+          <el-input
+            type="password"
+            v-model="ruleForm.password"
+            placeholder="请输入密码"
+            prefix-icon="el-icon-lock"
+          ></el-input>
+        </el-form-item>
+
+        <el-form-item>
+          <div class="login-btn">
+            <el-button type="primary" @click="OnSubmit('ruleForm')">登录</el-button>
+          </div>
         </el-form-item>
       </el-form>
     </div>
@@ -19,11 +35,15 @@ export default {
       if (value === '') {
         callback(new Error('请输入用户名'))
       } else if (!value.match(reg)) {
-        callback(
-          new Error(
-            '请输入正确规则的用户名, 由数字、26个英文字母或者下划线组成'
-          )
-        )
+        callback(new Error('用户名由数字、26个英文字母或者下划线组成'))
+      }
+      callback()
+    }
+    let validatepassword = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('密码'))
+      } else if (value.length < 3 || value.length > 12) {
+        callback(new Error('密码长度至少3位最多12位'))
       }
       callback()
     }
@@ -33,8 +53,21 @@ export default {
         password: ''
       },
       rules: {
-        username: [{ validator: validatename, trigger: 'blur' }]
+        username: [{ validator: validatename, trigger: 'blur' }],
+        password: [{ validator: validatepassword, trigger: 'blur' }]
       }
+    }
+  },
+  methods: {
+    OnSubmit(formName) {
+      this.$refs[formName].validate(valid => {
+        if (valid) {
+          console.log('成功')
+        } else {
+          console.log('error submit!!')
+          return false
+        }
+      })
     }
   }
 }
@@ -54,8 +87,9 @@ export default {
     left: 50%;
     transform: translateX(-50%);
     top: 50%;
+    margin-top: -175px;
     width: 350px;
-    height: 200px;
+    max-height: 350px;
     background-color: $mslogin;
     .ms-title {
       line-height: 50px;
@@ -65,6 +99,9 @@ export default {
     .cy-login-form {
       width: 300px;
       padding: 25px;
+      .login-btn button {
+        width: 100%;
+      }
     }
   }
 }
