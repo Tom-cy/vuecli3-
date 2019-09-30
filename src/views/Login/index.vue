@@ -39,7 +39,7 @@
             <div class="button el-icon-s-grid" @mousedown.prevent="drag"></div>
           </div>
           <div class="operation">
-            <span title="关闭验证码" @click="visible = false" class="el-icon-circle-close"></span>
+            <span title="关闭验证码" @click="closecanvas" class="el-icon-circle-close"></span>
             <span title="刷新验证码" @click="canvasInit" class="el-icon-refresh-left"></span>
           </div>
         </div>
@@ -69,6 +69,7 @@ export default {
       }
       callback()
     }
+
     return {
       loading: false,
       ruleForm: {
@@ -91,7 +92,9 @@ export default {
       slider: {
         mx: 0,
         bx: 0
-      }
+      },
+      // 拼图背景图片
+      imgN: 0
     }
   },
   methods: {
@@ -99,7 +102,7 @@ export default {
     UserLogin() {
       this.loading = false
       this.$store.dispatch('user/login', this.ruleForm).then(response => {
-        console.log('login-vue页面')
+        console.log(response)
       })
     },
 
@@ -119,9 +122,18 @@ export default {
     },
     //拼图验证码初始化
     canvasInit() {
+      let imgN = this.imgN
+      imgN++
+      if (imgN > 8) {
+        imgN = 1
+      }
+      console.log(imgN)
+
+      this.imgN = imgN
+      this.tips = '拖动左边滑块完成上方拼图'
       //生成指定区间的随机数
       const random = (min, max) => {
-        return Math.floor(Math.random() * (max - min + 1) + min)
+        return Math.floor(Math.random() * (max - min + 10) + min)
       }
       //x: 254, y: 109
       let mx = random(100, 255),
@@ -143,11 +155,24 @@ export default {
       blockDom.height = height
       mainDom.height = height
 
-      let imgsrc = require('../../assets/1.jpg')
-
       let img = document.createElement('img')
       img.style.objectFit = 'scale-down'
-      img.src = imgsrc
+      // let imgsrc = require('../../assets/login/1.jpg')
+      let imgSrc = [
+        require('../../assets/login/1.jpg'),
+        require('../../assets/login/2.jpg'),
+        require('../../assets/login/3.jpg'),
+        require('../../assets/login/4.jpg'),
+        require('../../assets/login/5.jpg'),
+        require('../../assets/login/6.jpg'),
+        require('../../assets/login/7.jpg'),
+        require('../../assets/login/8.jpg'),
+        require('../../assets/login/9.jpg')
+      ]
+
+      let imgN = this.imgN
+      img.src = imgSrc[imgN-1]
+
       img.onload = function() {
         bg.drawImage(img, 0, 0, width, height)
         block.drawImage(img, 0, 0, width, height)
@@ -239,6 +264,12 @@ export default {
 
       document.addEventListener('mousemove', move)
       document.addEventListener('mouseup', up)
+    },
+    // 关闭验证码
+    closecanvas() {
+      console.log('点击事件执行')
+      this.visible = false
+      this.loading = false
     }
   }
 }

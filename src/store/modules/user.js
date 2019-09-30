@@ -11,7 +11,6 @@ const actions = {
     return new Promise((resolve, reject) => {
       login(ruleForm)
         .then(response => {
-          console.log(response)
           // 显示状态的提示
           if (response.status === 200) {
             if (response.data.error === 1) {
@@ -24,7 +23,6 @@ const actions = {
                 type: 'success',
                 message: response.data.data
               })
-
               commit('SET_TOKEN', response.data.token)
               commit('SET_USERNAME', ruleForm.username)
               setToken(response.data.token)

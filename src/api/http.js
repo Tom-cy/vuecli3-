@@ -2,7 +2,6 @@ import Axios from 'axios'
 import { Message } from 'element-ui'
 import Cookies from 'js-cookie'
 import router from '@/router'
-console.log(process.env.BASE_URL)
 // 创建axios 实例
 const service = Axios.create({
   baseURL: process.env.BASE_URL, // api的baseurl
