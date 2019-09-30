@@ -102,7 +102,7 @@ export default {
     UserLogin() {
       this.loading = false
       this.$store.dispatch('user/login', this.ruleForm).then(response => {
-        console.log(response)
+        this.$router.push('/')
       })
     },
 
@@ -127,8 +127,6 @@ export default {
       if (imgN > 8) {
         imgN = 1
       }
-      console.log(imgN)
-
       this.imgN = imgN
       this.tips = '拖动左边滑块完成上方拼图'
       //生成指定区间的随机数
@@ -171,7 +169,7 @@ export default {
       ]
 
       let imgN = this.imgN
-      img.src = imgSrc[imgN-1]
+      img.src = imgSrc[imgN - 1]
 
       img.onload = function() {
         bg.drawImage(img, 0, 0, width, height)
@@ -267,7 +265,6 @@ export default {
     },
     // 关闭验证码
     closecanvas() {
-      console.log('点击事件执行')
       this.visible = false
       this.loading = false
     }

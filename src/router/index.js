@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-
+import Layout from '@/layout'
 Vue.use(Router)
 
 /**
@@ -23,21 +23,23 @@ export const asyncRoutes = [
  */
 
 export const constantRoutes = [
-  // {
-  //   path: '/',
-  //   redirect: "/home",
-  //   component: Layout,
-  //   children: [{
-  //     path: 'home',
-  //     component: () => import("@/views/Home/index"),
-  //     name: 'Home',
-  //     meta: {
-  //       title: 'dashboard',
-  //       icon: 'dashboard',
-  //       affix: true
-  //     }
-  //   }]
-  // },
+  {
+    path: '/',
+    redirect: '/home',
+    component: Layout,
+    children: [
+      {
+        path: 'home',
+        component: () => import('@/views/Home/index'),
+        name: 'Home',
+        meta: {
+          title: 'dashboard',
+          icon: 'dashboard',
+          affix: true
+        }
+      }
+    ]
+  },
   {
     path: '/login',
     name: 'login',
