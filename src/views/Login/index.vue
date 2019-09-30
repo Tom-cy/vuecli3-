@@ -2,9 +2,18 @@
   <div class="login-wrap">
     <div class="ms-login">
       <div class="ms-title">后台管理</div>
-      <el-form :model="ruleForm" class="cy-login-form" ref="ruleForm" :rules="rules">
+      <el-form
+        :model="ruleForm"
+        class="cy-login-form"
+        ref="ruleForm"
+        :rules="rules"
+      >
         <el-form-item prop="username">
-          <el-input v-model="ruleForm.username" placeholder="请输入用户名" prefix-icon="el-icon-user"></el-input>
+          <el-input
+            v-model="ruleForm.username"
+            placeholder="请输入用户名"
+            prefix-icon="el-icon-user"
+          ></el-input>
         </el-form-item>
 
         <el-form-item prop="password">
@@ -28,19 +37,38 @@
         </el-form-item>
       </el-form>
       <!-- 验证码弹框 -->
-      <el-popover popper-class="slidingPictures" ref="popover" trigger="manual" v-model="visible">
+      <el-popover
+        popper-class="slidingPictures"
+        ref="popover"
+        trigger="manual"
+        v-model="visible"
+      >
         <div class="sliding-pictures">
           <div class="vimg">
             <canvas id="sliderBlock"></canvas>
             <canvas id="codeImg"></canvas>
           </div>
           <div class="slider">
-            <div class="track" :class="{pintuTrue:puzzle}">{{tips}}</div>
-            <div class="button el-icon-s-grid" @mousedown.prevent="drag"></div>
+            <div
+              class="track"
+              :class="{pintuTrue:puzzle}"
+            >{{tips}}</div>
+            <div
+              class="button el-icon-s-grid"
+              @mousedown.prevent="drag"
+            ></div>
           </div>
           <div class="operation">
-            <span title="关闭验证码" @click="closecanvas" class="el-icon-circle-close"></span>
-            <span title="刷新验证码" @click="canvasInit" class="el-icon-refresh-left"></span>
+            <span
+              title="关闭验证码"
+              @click="closecanvas"
+              class="el-icon-circle-close"
+            ></span>
+            <span
+              title="刷新验证码"
+              @click="canvasInit"
+              class="el-icon-refresh-left"
+            ></span>
           </div>
         </div>
       </el-popover>
@@ -326,14 +354,10 @@ export default {
   .vimg {
     width: 100%;
     height: 170px;
-    #codeImg,
     #sliderBlock {
       // padding: 7px 7px 0 7px;
       width: inherit;
       height: inherit;
-    }
-    #codeImg {
-      //display: none;
     }
     #sliderBlock {
       position: absolute;
