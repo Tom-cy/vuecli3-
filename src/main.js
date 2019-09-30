@@ -9,7 +9,8 @@ Vue.use(ElementUi)
 
 // 引入基础样式配置
 import './style/index.scss'
-
+// 引入icon
+import './icons'
 Vue.config.productionTip = false
 
 new Vue({

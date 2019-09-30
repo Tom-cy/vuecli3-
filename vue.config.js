@@ -29,5 +29,16 @@ module.exports = {
       args[0]['process.env'].BASE_URL = JSON.stringify(process.env.BASE_URL)
       return args
     })
+    config.module.rules.delete('svg')
+    config.module
+      .rule('svg-sprite-loader')
+      .test(/\.svg$/)
+      .include.add(resolve('src/icons')) // 处理svg目录
+      .end()
+      .use('svg-sprite-loader')
+      .loader('svg-sprite-loader')
+      .options({
+        symbolId: 'icon-[name]'
+      })
   }
 }

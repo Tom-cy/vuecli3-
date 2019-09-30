@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div>
+      <base-header></base-header>
+    </div>
     <keep-alive>
       <router-view></router-view>
     </keep-alive>
