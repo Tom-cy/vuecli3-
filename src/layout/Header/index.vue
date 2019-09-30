@@ -2,7 +2,7 @@
   <div>
     <!-- 左侧区域 -->
     <div>
-      <!-- <icon-svg icon-class="menu"></icon-svg> -->
+      <svg-icon icon-class="menu"></svg-icon>
       <p>智能管理系统</p>
     </div>
     <!-- 右侧区域 -->
