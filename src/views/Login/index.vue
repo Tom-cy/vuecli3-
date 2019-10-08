@@ -159,12 +159,12 @@ export default {
       this.tips = '拖动左边滑块完成上方拼图'
       //生成指定区间的随机数
       const random = (min, max) => {
-        return Math.floor(Math.random() * (max - min + 10) + min)
+        return Math.floor(Math.random() * (max - min) + min)
       }
       //x: 254, y: 109
       let mx = random(100, 255),
         bx = random(10, 120),
-        y = random(10, 99)
+        y = random(10, 80)
       this.slider = { mx, bx }
       this.draw(mx, bx, y)
     },
@@ -173,12 +173,12 @@ export default {
       let mainDom = document.querySelector('#codeImg')
       let bg = mainDom.getContext('2d')
       let width = mainDom.width
-      let height = mainDom.height
-
+      let height = 170
       let blockDom = document.querySelector('#sliderBlock')
       let block = blockDom.getContext('2d')
       // 重新赋值, 让canvas进行重新绘制
       blockDom.height = height
+
       mainDom.height = height
 
       let img = document.createElement('img')
@@ -199,18 +199,20 @@ export default {
       let imgN = this.imgN
       img.src = imgSrc[imgN - 1]
 
-      img.onload = function() {
+      img.onload = function () {
         bg.drawImage(img, 0, 0, width, height)
         block.drawImage(img, 0, 0, width, height)
       }
 
       let mainxy = { x: mx, y: y, r: 9 }
       let blockxy = { x: bx, y: y, r: 9 }
-
+      // 被裁剪的坐标
       this.drawBlock(bg, mainxy, 'fill')
+      // 滑块的坐标
       this.drawBlock(block, blockxy, 'clip')
+      console.log(blockxy)
     },
-    // 绘制拼图
+    // // 绘制拼图
     drawBlock(ctx, xy = { x: 254, y: 109, r: 9 }, type) {
       let x = xy.x,
         y = xy.y,
@@ -234,13 +236,13 @@ export default {
       ctx.lineTo(x, y)
       //修饰，没有会看不出效果
       ctx.lineWidth = 1
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.8)'
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)'
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.9)'
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.9)'
       ctx.stroke()
       ctx[type]()
       ctx.globalCompositeOperation = 'xor'
     },
-    // 拖动图片模块,鼠标go
+    // // 拖动图片模块,鼠标go
     drag(e) {
       let dom = e.target //dom元素
       let slider = document.querySelector('#sliderBlock') //滑块dom
@@ -321,7 +323,7 @@ export default {
   width: 100%;
   height: 100%;
   background-image: url(../../assets/login.png);
-  background-size: 100%;
+  background-size: cover;
   color: #fff;
   .ms-login {
     position: absolute;
