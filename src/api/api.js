@@ -16,3 +16,12 @@ export function login(data) {
     data
   })
 }
+// getInfo
+
+export function getUserInfo(params) {
+  return Http({
+    url: 'admin/getInfo',
+    method: 'get',
+    params
+  })
+}

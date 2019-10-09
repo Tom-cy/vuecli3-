@@ -1,7 +1,12 @@
-import { login } from '@/api/api'
+import { login, getUserInfo } from '@/api/api'
 import { Message } from 'element-ui'
-import { getToken, setToken } from '@/untils/auth'
+import { getToken, setToken, removeToken } from '@/untils/auth'
 const state = {
+  // 用户的基本数据
+  avator: '',
+  introduction: '',
+  name: '',
+  roles: '',
   username: '',
   token: getToken()
 }
@@ -34,6 +39,34 @@ const actions = {
           reject(e)
         })
     })
+  },
+  getInfo({ commit, state }) {
+    return new Promise((resolve, reject) => {
+      getUserInfo({ username: state.username })
+        .then(response => {
+          const data = response.data.data
+          if (!data) {
+            reject('请再次登录')
+          }
+          const { avator, introduction, name, roles } = data
+          commit('SET_AVATOR', avator)
+          commit('SET_INTRODUCTION', introduction)
+          commit('SET_NAME', name)
+          commit('SET_ROLES', roles)
+          resolve(data)
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
+  },
+  resetToken({ commit }) {
+    return new Promise(resolve => {
+      commit('SET_TOKEN', '')
+      commit('SET_ROLES', [])
+      removeToken()
+      resolve()
+    })
   }
 }
 const mutations = {
@@ -42,6 +75,18 @@ const mutations = {
   },
   SET_USERNAME: (state, name) => {
     state.username = name
+  },
+  SET_AVATOR: (state, url) => {
+    state.avator = url
+  },
+  SET_INTRODUCTION: (state, params) => {
+    state.introduction = params
+  },
+  SET_NAME: (state, params) => {
+    state.name = params
+  },
+  SET_ROLES: (state, params) => {
+    state.roles = params
   }
 }
 
