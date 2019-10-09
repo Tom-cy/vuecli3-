@@ -3,19 +3,25 @@ import { getToken } from '@/untils/auth'
 import store from './store'
 import { Message } from 'element-ui'
 // 路由前置配置
-const whiteList = ['/login', 'auth-redirect']
+
+const whiteList = ['/login', '/auth-redirect']
 router.beforeEach(async(to, from, next) => {
   const hasToken = getToken()
   if (hasToken) {
     if (to.path === '/login') {
+      // console.log('执行1')
       //   进入首页
       next({ path: '/' })
     } else {
+      // console.log('执行2')
       // 确定用户是否通过getInfo获取到了用户权限
       const hasRoles = store.getters.roles && store.getters.roles.length > 0
       if (hasRoles) {
         //   判断是否有role
+        // console.log('执行3')
+        next()
       } else {
+        // console.log('执行4')
         try {
           //   没有则进行发布事件,得到roles
           const { roles } = await store.dispatch('user/getInfo')
@@ -38,10 +44,14 @@ router.beforeEach(async(to, from, next) => {
       }
     }
   } else {
+    // console.log('执行5')
     // NO token
     if (whiteList.indexOf(to.path) !== -1) {
+      // console.log('执行6')
       next()
     } else {
+      // console.log('执行7')
+
       next(`/login?redirect=${to.path}`)
     }
   }
