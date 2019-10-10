@@ -1,30 +1,42 @@
  <template>
   <div class="slider">
-    <el-col>
+    <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
-        default-active="2"
-        class="el-menu-vertical-demo"
+        background-color="#545c64"
+        text-color="#fff"
+        active-text-color="#ffd04b"
+        mode="vertical"
       >
-        <el-submenu index="1">
-          <template slot="title">
-            <i class="el-icon-location"></i>
-            <span>导航一</span>
-          </template>
-          <el-menu-item index="1-1">选项1</el-menu-item>
-          <el-menu-item index="1-2">选项2</el-menu-item>
-          <el-menu-item index="1-3">选项3</el-menu-item>
-          <el-submenu index="1-4">
-            <template slot="title">选项4</template>
-            <el-menu-item index="1-4-1">选项1</el-menu-item>
-            <el-menu-item index="1-4-2">选项2</el-menu-item>
-            <el-menu-item index="1-4-3">选项3</el-menu-item>
-          </el-submenu>
-        </el-submenu>
-
+        <sidebar-item
+          v-for="route in assessedRoutes"
+          :key="route.path"
+          :item="route"
+          :base-path="route.path"
+        ></sidebar-item>
       </el-menu>
-    </el-col>
+    </el-scrollbar>
   </div>
 </template>
+
+<script>
+import { mapGetters } from 'vuex'
+import SidebarItem from './Sidebaritem';
+export default {
+  components: { SidebarItem },
+  computed: {
+    ...mapGetters([
+      'assessedRoutes'
+    ])
+  },
+  watch: {
+    'this.$store.state.assessedRoutes': () => {
+      // console.log(assessedRoutes)
+    }
+  }
+}
+</script>
+
+
 
 <style lang="scss" scoped>
 .slider {

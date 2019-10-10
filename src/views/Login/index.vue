@@ -210,7 +210,6 @@ export default {
       this.drawBlock(bg, mainxy, 'fill')
       // 滑块的坐标
       this.drawBlock(block, blockxy, 'clip')
-      console.log(blockxy)
     },
     // // 绘制拼图
     drawBlock(ctx, xy = { x: 254, y: 109, r: 9 }, type) {
