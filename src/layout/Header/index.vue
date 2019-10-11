@@ -6,7 +6,7 @@
         @click="handCollapse"
       >
         <el-tooltip content="菜单">
-          <icon-svg icon-class="menu" />
+          <svg-icon icon-class="menu" />
         </el-tooltip>
 
       </div>
@@ -18,7 +18,7 @@
         @click="handFullscreen"
       >
         <el-tooltip :content="fullscreen? '取消全屏': '全屏'">
-          <icon-svg icon-class="ping" />
+          <svg-icon icon-class="ping" />
         </el-tooltip>
       </div>
       <div class="home_ling">
@@ -26,7 +26,7 @@
           effect="dark"
           content="信息"
         >
-          <icon-svg icon-class="ling" />
+          <svg-icon icon-class="ling" />
         </el-tooltip>
       </div>
       <div class="ani_img">

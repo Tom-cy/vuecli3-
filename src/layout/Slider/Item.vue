@@ -17,13 +17,22 @@ export default {
     const vnodes = []
 
     if (icon) {
-      vnodes.push(<icon-svg icon-class={icon}/>)
+      vnodes.push(<svg-icon icon-class={icon} className="sidebar_left" />)
     }
 
     if (title) {
-      vnodes.push(<span slot='title'>{(title)}</span>)
+      vnodes.push(<span slot="title">{title}</span>)
     }
     return vnodes
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.sidebar_left {
+  width: 24px !important;
+  height: 24px !important;
+  margin-right: 8px;
+}
+ 
+</style>
