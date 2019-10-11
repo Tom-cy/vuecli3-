@@ -25,6 +25,16 @@
           ></el-input>
         </el-form-item>
 
+        <el-form-item prop="checkgraph">
+          <el-input
+            placeholder="请输入验证码"
+            prefix-icon="el-icon-unlock"
+            class="graphical_input"
+            v-model="ruleForm.checkgraph"
+          ></el-input>
+          <graphical ref="getSelectData" />
+        </el-form-item>
+
         <el-form-item>
           <div class="login-btn">
             <el-button
@@ -77,8 +87,10 @@
 </template>
 
 <script>
-import { async } from 'q'
+import Graphical from './module/identify'
+import { Message } from 'element-ui'
 export default {
+  components: { Graphical },
   data() {
     let validatename = (rule, value, callback) => {
       let reg = /^[0-9a-zA-Z_]{1,}$/
@@ -98,15 +110,26 @@ export default {
       callback()
     }
 
+    let validatecheckgraph = (rule, value, callback) => {
+      let identifyCode = this.$refs.getSelectData.identifyCode
+      if (value === '') {
+        callback(new Error('请输入验证码'))
+      } else if (value !== identifyCode) {
+        callback(new Error('请输入正确验证码'))
+      }
+      callback()
+    }
     return {
       loading: false,
       ruleForm: {
         username: '',
-        password: ''
+        password: '',
+        checkgraph: ''
       },
       rules: {
         username: [{ validator: validatename, trigger: 'blur' }],
-        password: [{ validator: validatepassword, trigger: 'blur' }]
+        password: [{ validator: validatepassword, trigger: 'blur' }],
+        checkgraph: [{ validator: validatecheckgraph, trigger: 'blur' }]
       },
       /**
        * 图片验证模块
@@ -136,6 +159,7 @@ export default {
 
     OnSubmit(formName) {
       this.$refs[formName].validate(valid => {
+        console.log(valid)
         if (valid) {
           this.loading = true
           let isVisible = this.visible
@@ -144,6 +168,10 @@ export default {
           this.puzzle = false
         } else {
           console.log('error submit!!')
+          Message({
+            type: 'error',
+            message: '操作有误'
+          })
           return false
         }
       })
@@ -199,7 +227,7 @@ export default {
       let imgN = this.imgN
       img.src = imgSrc[imgN - 1]
 
-      img.onload = function () {
+      img.onload = function() {
         bg.drawImage(img, 0, 0, width, height)
         block.drawImage(img, 0, 0, width, height)
       }
@@ -341,8 +369,11 @@ export default {
     .cy-login-form {
       width: 300px;
       padding: 25px;
-      .login-btn button {
+      .login-btn {
         width: 100%;
+        button {
+          width: 100%;
+        }
       }
     }
   }
@@ -419,5 +450,9 @@ export default {
       }
     }
   }
+}
+.el-form-item__content {
+  display: flex;
+  line-height: 0;
 }
 </style>

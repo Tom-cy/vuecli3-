@@ -16,6 +16,8 @@ import './icons'
 import './permission'
 Vue.config.productionTip = false
 
+ 
+
 new Vue({
   el: '#app',
   store,
