@@ -1,5 +1,5 @@
 <template>
   <div>
-    123
+    page
   </div>
 </template>

@@ -119,7 +119,6 @@ export default {
 .menu-wrapper a li {
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 .menu-wrapper /deep/ .el-submenu__title {
   display: flex;

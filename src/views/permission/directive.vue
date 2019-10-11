@@ -1,5 +1,5 @@
 <template>
   <div>
-    123
+    directive
   </div>
 </template>

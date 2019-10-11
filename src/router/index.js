@@ -28,7 +28,7 @@ export const asyncRoutes = [
         meta: {
           title: 'Page Permission',
           icon: '14-golfcar',
-          roles: ['admin'] // or you can only set roles in sub nav
+          roles: ['editor'] // or you can only set roles in sub nav
         }
       },
       {
