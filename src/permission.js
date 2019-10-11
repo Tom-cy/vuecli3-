@@ -5,7 +5,7 @@ import { Message } from 'element-ui'
 // 路由前置配置
 
 const whiteList = ['/login', '/auth-redirect']
-router.beforeEach(async (to, from, next) => {
+router.beforeEach(async(to, from, next) => {
   const hasToken = getToken()
   if (hasToken) {
     if (to.path === '/login') {
@@ -28,6 +28,8 @@ router.beforeEach(async (to, from, next) => {
           )
           // 然后动态添加可以访问的路由
           router.addRoutes(accessRoutes)
+          console.log(accessRoutes)
+          console.log(router)
           // hack 方法确保addroutes 完成
           // 设置replace:true  导航不会留下历史记录
           next({ ...to, replace: true })

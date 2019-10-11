@@ -1,4 +1,4 @@
- <template>
+<template>
   <div class="slider">
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
@@ -7,12 +7,12 @@
         active-text-color="#ffd04b"
         mode="vertical"
       >
-        <!-- <sidebar-item
+        <sidebar-item
           v-for="route in assessedRoutes"
           :key="route.path"
           :item="route"
           :base-path="route.path"
-        ></sidebar-item> -->
+        />
       </el-menu>
     </el-scrollbar>
   </div>
@@ -20,23 +20,15 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import SidebarItem from './Sidebaritem';
+import SidebarItem from './Sidebaritem'
 export default {
   components: { SidebarItem },
   computed: {
-    ...mapGetters([
-      'assessedRoutes'
-    ])
+    ...mapGetters(['assessedRoutes'])
   },
-  watch: {
-    'this.$store.state.assessedRoutes': () => {
-      // console.log(assessedRoutes)
-    }
-  }
+  watch: {}
 }
 </script>
-
-
 
 <style lang="scss" scoped>
 .slider {
