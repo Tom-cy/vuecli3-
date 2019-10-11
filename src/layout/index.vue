@@ -3,9 +3,9 @@
     <div>
       <base-header></base-header>
     </div>
-    <div>
+    <!-- <div>
       <base-slider></base-slider>
-    </div>
+    </div> -->
     <keep-alive>
       <router-view></router-view>
     </keep-alive>

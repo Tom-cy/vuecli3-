@@ -15,9 +15,6 @@ import './icons'
 // 引入路由的配置
 import './permission'
 Vue.config.productionTip = false
-
- 
-
 new Vue({
   el: '#app',
   store,

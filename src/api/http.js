@@ -45,14 +45,14 @@ service.interceptors.response.use(
      * 断网
      * 请求超时状态
      */
-    if (!error.response) {
-      if (error.message.includes('timeout')) {
-        Message.error('请求超时, 请检测网络是否连接正常')
-      } else {
-        Message.error('请求错误, 请检测网络是否连接正常')
-      }
-      return
-    }
+    // if (!error.response) {
+    //   if (error.message.includes('timeout')) {
+    //     Message.error('请求超时, 请检测网络是否连接正常')
+    //   } else {
+    //     Message.error('请求错误, 请检测网络是否连接正常')
+    //   }
+    //   return
+    // }
 
     const responseCode = error.response.status
 

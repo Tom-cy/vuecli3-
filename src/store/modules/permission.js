@@ -44,7 +44,6 @@ const actions = {
   generateRoutes({ commit }, roles) {
     return new Promise(resolve => {
       let assessedRoutes
-      // const roles = roles[0]
       if (roles.includes('admin')) {
         // 加载动态路由
         assessedRoutes = asyncRoutes || []
