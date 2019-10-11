@@ -55,8 +55,8 @@ const actions = {
           commit('SET_ROLES', roles)
           resolve(data)
         })
-        .catch(error => {
-          reject(error)
+        .catch(e => {
+          reject(e)
         })
     })
   },

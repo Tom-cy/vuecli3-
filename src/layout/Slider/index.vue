@@ -7,12 +7,12 @@
         active-text-color="#ffd04b"
         mode="vertical"
       >
-        <sidebar-item
+        <!-- <sidebar-item
           v-for="route in assessedRoutes"
           :key="route.path"
           :item="route"
           :base-path="route.path"
-        ></sidebar-item>
+        ></sidebar-item> -->
       </el-menu>
     </el-scrollbar>
   </div>

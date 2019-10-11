@@ -1,13 +1,13 @@
 <template>
   <div>
     <div>
-      <base-header></base-header>
+      <base-header />
     </div>
-    <!-- <div>
-      <base-slider></base-slider>
-    </div> -->
+    <div>
+      <base-slider />
+    </div>
     <keep-alive>
-      <router-view></router-view>
+      <router-view />
     </keep-alive>
   </div>
 </template>
