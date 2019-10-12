@@ -1,14 +1,12 @@
 <template>
-  <div
-    class="slider"
-    :class="{'slider-isCollapse': isCollapse}"
-  >
+  <div class="slider">
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
         background-color="#545c64"
         text-color="#fff"
         active-text-color="#ffd04b"
         mode="vertical"
+        :collapse="isCollapse"
       >
         <sidebar-item
           v-for="route in assessedRoutes"

@@ -49,6 +49,7 @@
   </div>
 </template>
 <script>
+import bus from '@/common/bus'
 import path from 'path'
 import { isExternal } from '@/untils/validate'
 import AppLink from './Link'
@@ -74,9 +75,12 @@ export default {
   },
   data() {
     this.onlyOnechild = null
-    return {}
+    return {
+    }
   },
-  mounted() {},
+  mounted() {
+    
+  },
   methods: {
     hasOneShowingChild(children = [], parent) {
       const showingChildren = children.filter(item => {

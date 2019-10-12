@@ -1,30 +1,14 @@
 .slider {
-    display: block;
-    position: absolute;
-    top: 70px;
-    left: 0;
-    bottom: 0;
-    overflow-y: scroll;
-    background-color: rgb(84, 92, 100);
-    overflow: hidden;
-  }
-.sidebar-container {
-  transition: width 0.28s;
-  width: 250px !important;
-  background-color: rgb(84, 92, 100);
-  height: 100%;
-  position: fixed;
-  font-size: 0px;
+  display: block;
+  position: absolute;
   top: 70px;
-  bottom: 0;
   left: 0;
-  z-index: 1001;
+  bottom: 0;
+  overflow-y: scroll;
+  background-color: rgb(84, 92, 100);
   overflow: hidden;
 }
-.slider-isCollapse {
-  width: 65px;
-  overflow: hidden;
-}
+
 .slider::-webkit-scrollbar {
   width: 0;
 }
@@ -44,4 +28,41 @@
 .menu-wrapper /deep/ .el-submenu__title {
   display: flex;
   align-items: center;
+  padding: 0;
+}
+.el-menu--collapse
+  /deep/
+  .menu-wrapper
+  /deep/
+  .el-submenu
+  /deep/
+  .el-submenu__title {
+  width: 65px;
+}
+
+.el-menu--collapse
+  /deep/
+  .menu-wrapper
+  /deep/
+  .el-submenu
+  /deep/
+  .el-submenu__title
+  /deep/
+  span {
+  width: 0;
+  height: 0;
+  visibility: hidden;
+  display: inline-block;
+  overflow: hidden;
+}
+.el-menu--collapse
+  /deep/
+  .menu-wrapper
+  /deep/
+  .el-submenu
+  /deep/
+  .el-submenu__title
+  /deep/
+  .el-submenu__icon-arrow {
+  display: none;
 }
