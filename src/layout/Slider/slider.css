@@ -9,16 +9,9 @@
   overflow: hidden;
 }
 
-.slider::-webkit-scrollbar {
-  width: 0;
-}
 .slider /deep/ .el-scrollbar {
   width: 250px;
   overflow: hidden;
-}
-
-.slider /deep/ .scrollbar-wrapper {
-  margin-right: -18px !important;
 }
 
 .menu-wrapper a li {
@@ -29,15 +22,6 @@
   display: flex;
   align-items: center;
   padding: 0;
-}
-.el-menu--collapse
-  /deep/
-  .menu-wrapper
-  /deep/
-  .el-submenu
-  /deep/
-  .el-submenu__title {
-  width: 65px;
 }
 
 .el-menu--collapse
@@ -55,6 +39,7 @@
   display: inline-block;
   overflow: hidden;
 }
+
 .el-menu--collapse
   /deep/
   .menu-wrapper
@@ -65,4 +50,22 @@
   /deep/
   .el-submenu__icon-arrow {
   display: none;
+}
+.el-menu--collapse
+  /deep/
+  .menu-wrapper
+  /deep/
+  .el-submenu
+  /deep/
+  .el-submenu__title {
+  width: 65px;
+}
+
+/* .scrollbar-wrapper */
+.scrollbar-wrapper {
+  margin: 0 !important;
+  overflow: hidden !important;
+}
+.el-menu {
+  border-right: none !important;
 }

@@ -7,6 +7,7 @@
         active-text-color="#ffd04b"
         mode="vertical"
         :collapse="isCollapse"
+        collapse-transition
       >
         <sidebar-item
           v-for="route in assessedRoutes"

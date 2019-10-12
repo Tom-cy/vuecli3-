@@ -44,13 +44,12 @@ export default {
   top: 70px;
   right: 0;
   bottom: 0;
-  transition: left 0.7s ease;
+  transition: left 0.5s ease-in;
   background-color: #f0f0f0;
   .allInfo {
     width: auto;
     height: 100%;
     padding: 10px;
-
     overflow-y: scroll;
     box-sizing: border-box;
   }
