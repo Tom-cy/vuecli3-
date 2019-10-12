@@ -58,7 +58,7 @@
             <canvas id="sliderBlock"></canvas>
             <canvas id="codeImg"></canvas>
           </div>
-          <div class="slider">
+          <div class="slider_login">
             <div
               class="track"
               :class="{pintuTrue:puzzle}"
@@ -396,7 +396,7 @@ export default {
       z-index: 4000;
     }
   }
-  .slider {
+  .slider_login {
     width: 100%;
     height: 65px;
     border-bottom: #c7c9d0 1px solid;
