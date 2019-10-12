@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import './Slider/slider.css'
 import BaseHeader from './Header'
 import BaseSlider from './Slider'
 import bus from '@/common/bus'
@@ -37,19 +38,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .content_box {
   position: absolute;
   left: 250px;
   top: 70px;
   right: 0;
   bottom: 0;
-  transition: left 0.3s ease-in-out;
+  transition: left 0.7s ease;
   background-color: #f0f0f0;
   .allInfo {
     width: auto;
     height: 100%;
     padding: 10px;
+
     overflow-y: scroll;
     box-sizing: border-box;
   }
@@ -57,4 +58,5 @@ export default {
 .content-isCollapse {
   left: 65px;
 }
+ 
 </style>

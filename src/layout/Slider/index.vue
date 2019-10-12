@@ -42,31 +42,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.slider {
-  display: block;
-  position: absolute;
-  top: 70px;
-  left: 0;
-  bottom: 0;
-  overflow-y: scroll;
-  background-color: rgb(84, 92, 100);
-  overflow: hidden;
-}
-.slider-isCollapse {
-  width: 65px;
-  overflow: hidden;
-}
-.slider::-webkit-scrollbar {
-  width: 0;
-}
-.slider /deep/ .el-scrollbar {
-  width: 250px;
-  overflow: hidden;
-}
-
-.slider /deep/ .scrollbar-wrapper {
-  margin-right: -18px !important;
-}
-</style>

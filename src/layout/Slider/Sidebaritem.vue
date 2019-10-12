@@ -114,14 +114,4 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.menu-wrapper a li {
-  display: flex;
-  align-items: center;
-}
-.menu-wrapper /deep/ .el-submenu__title {
-  display: flex;
-  align-items: center;
-}
-</style>
+ 
